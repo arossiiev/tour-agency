@@ -1,10 +1,12 @@
-import './App.css';
+import ToursPage from "./components/pages/ToursPage";
+import {Route, Routes} from "react-router-dom";
 
 
 function App() {
   return (
-    <div className="App">
-    </div>
+      <Routes>
+          <Route exact path="/" element={<ToursPage/>}/>
+      </Routes>
   );
 }
 

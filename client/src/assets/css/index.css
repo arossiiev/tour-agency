@@ -1,0 +1,20 @@
+.no-text-decoration,
+.no-text-decoration a,
+.no-text-decoration a:link,
+.no-text-decoration a:visited,
+.no-text-decoration a:hover,
+.no-text-decoration a:active{
+    text-decoration: none !important;
+    color: black;
+    margin-bottom: 0;
+}
+
+
+
+.bg-blue{
+    background: cornflowerblue;
+}
+
+.bg-grey{
+    background: rgb(45, 46, 48);
+}
