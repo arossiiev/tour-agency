@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 function Header(){
 
     return (
-        <div className={"nav navbar bg-blue sticky-top"}>
+        <header className={"nav navbar bg-blue sticky-top"}>
             <div className={"container no-text-decoration"}>
                 <Link to="/">
                     <div className="d-flex">
@@ -17,7 +17,7 @@ function Header(){
                 </Link>
             </div>
 
-        </div>
+        </header>
     );
 
 }
