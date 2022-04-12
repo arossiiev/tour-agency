@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TourRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Tour
      * @ORM\Column(type="integer")
      */
     private $price;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Route::class, mappedBy="tour_id")
+     */
+    private $routes;
+
+    public function __construct()
+    {
+        $this->routes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,36 @@ class Tour
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Route>
+     */
+    public function getRoutes(): Collection
+    {
+        return $this->routes;
+    }
+
+    public function addRoute(Route $route): self
+    {
+        if (!$this->routes->contains($route)) {
+            $this->routes[] = $route;
+            $route->setTourId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoute(Route $route): self
+    {
+        if ($this->routes->removeElement($route)) {
+            // set the owning side to null (unless already changed)
+            if ($route->getTourId() === $this) {
+                $route->setTourId(null);
+            }
+        }
 
         return $this;
     }
