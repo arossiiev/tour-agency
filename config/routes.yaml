@@ -8,6 +8,11 @@ get_tours:
   methods: GET
 
 get_tour:
-  path: /tour/{id}
+  path: /tours/{id}
   controller: App\Controller\TourController::getTour
+  methods: GET
+
+get_routes:
+  path: /tours/{tour_id}/routes
+  controller: App\Controller\RouteController::getRoutes
   methods: GET

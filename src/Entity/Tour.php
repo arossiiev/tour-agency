@@ -45,7 +45,7 @@ class Tour
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity=Route::class, mappedBy="tour_id")
+     * @ORM\OneToMany(targetEntity=Route::class, mappedBy="tour")
      */
     private $routes;
 

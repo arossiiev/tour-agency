@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\TourRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
@@ -22,7 +23,7 @@ class TourController extends AbstractController
         $tours = $tourRepository->findAll();
         $normalizedTours = [];
         foreach ($tours as $tour){
-            $normalizedTour = $normalizer->normalize($tour);
+            $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["routes"]]);
             $normalizedTours[] = $normalizedTour;
          }
 
@@ -37,7 +38,7 @@ class TourController extends AbstractController
     ): JsonResponse
     {
         $tour = $tourRepository->find($id);
-        $normalizedTour = $normalizer->normalize($tour);
+        $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["routes"]]);
         return new JsonResponse($normalizedTour);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RouteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +44,16 @@ class Route
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SightInRoute::class, mappedBy="route")
+     */
+    private $sightInRoutes;
+
+    public function __construct()
+    {
+        $this->sightInRoutes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -84,12 +96,12 @@ class Route
         return $this;
     }
 
-    public function getTourId(): ?Tour
+    public function getTour(): ?Tour
     {
         return $this->tour;
     }
 
-    public function setTourId(?Tour $tour): self
+    public function setTour(?Tour $tour): self
     {
         $this->tour = $tour;
 
@@ -104,6 +116,36 @@ class Route
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SightInRoute>
+     */
+    public function getSightInRoutes(): Collection
+    {
+        return $this->sightInRoutes;
+    }
+
+    public function addSightInRoute(SightInRoute $sightInRoute): self
+    {
+        if (!$this->sightInRoutes->contains($sightInRoute)) {
+            $this->sightInRoutes[] = $sightInRoute;
+            $sightInRoute->setRoute($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSightInRoute(SightInRoute $sightInRoute): self
+    {
+        if ($this->sightInRoutes->removeElement($sightInRoute)) {
+            // set the owning side to null (unless already changed)
+            if ($sightInRoute->getRoute() === $this) {
+                $sightInRoute->setRoute(null);
+            }
+        }
 
         return $this;
     }
