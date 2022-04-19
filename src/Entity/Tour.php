@@ -45,14 +45,15 @@ class Tour
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity=Route::class, mappedBy="tour")
-     */
-    private $routes;
+     * @ORM\Column(type="string", length=255)
+     **/
+    private $name;
 
-    public function __construct()
-    {
-        $this->routes = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToOne(targetEntity=Route::class, mappedBy="tour", cascade={"persist", "remove"})
+     */
+    private $route;
+
 
     public function getId(): ?int
     {
@@ -119,33 +120,38 @@ class Tour
         return $this;
     }
 
-    /**
-     * @return Collection<int, Route>
-     */
-    public function getRoutes(): Collection
+    public function getName(): ?string
     {
-        return $this->routes;
+        return $this->name;
     }
 
-    public function addRoute(Route $route): self
+    public function setName(string $name): self
     {
-        if (!$this->routes->contains($route)) {
-            $this->routes[] = $route;
-            $route->setTourId($this);
-        }
+        $this->name = $name;
 
         return $this;
     }
 
-    public function removeRoute(Route $route): self
+    public function getRoute(): ?Route
     {
-        if ($this->routes->removeElement($route)) {
-            // set the owning side to null (unless already changed)
-            if ($route->getTourId() === $this) {
-                $route->setTourId(null);
-            }
+        return $this->route;
+    }
+
+    public function setRoute(?Route $route): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($route === null && $this->route !== null) {
+            $this->route->setTour(null);
         }
+
+        // set the owning side of the relation if necessary
+        if ($route !== null && $route->getTour() !== $this) {
+            $route->setTour($this);
+        }
+
+        $this->route = $route;
 
         return $this;
     }
+
 }

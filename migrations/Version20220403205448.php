@@ -21,7 +21,7 @@ final class Version20220403205448 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SEQUENCE tour_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql("CREATE TABLE tour (id INT NOT NULL DEFAULT nextval('tour_id_seq'), country VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, image_url VARCHAR(255) NOT NULL, price INT NOT NULL, PRIMARY KEY(id))");
+        $this->addSql("CREATE TABLE tour (id INT NOT NULL DEFAULT nextval('tour_id_seq'), name VARCHAR(255), country VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, image_url VARCHAR(255) NOT NULL, price INT NOT NULL, PRIMARY KEY(id))");
     }
 
     public function down(Schema $schema): void

@@ -23,7 +23,7 @@ class TourController extends AbstractController
         $tours = $tourRepository->findAll();
         $normalizedTours = [];
         foreach ($tours as $tour){
-            $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["routes"]]);
+            $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["route"]]);
             $normalizedTours[] = $normalizedTour;
          }
 
@@ -38,7 +38,7 @@ class TourController extends AbstractController
     ): JsonResponse
     {
         $tour = $tourRepository->find($id);
-        $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["routes"]]);
+        $normalizedTour = $normalizer->normalize($tour, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["route"]]);
         return new JsonResponse($normalizedTour);
     }
 }

@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 class RouteController extends AbstractController
 {
 
-    public function getRoutes(
+    public function getRoute(
         int $tour_id,
         TourRepository $tourRepository,
         NormalizerInterface $normalizer
@@ -20,14 +20,10 @@ class RouteController extends AbstractController
     ): JsonResponse
     {
 
-        $routes = $tourRepository->find($tour_id)->getRoutes();
-        $normalizedRoutes = [];
-        foreach ($routes as $route){
-            $normalizedRoutes[] = $normalizer->normalize($route, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["sightInRoutes", "tour"]]);
-
-        }
+        $route = $tourRepository->find($tour_id)->getRoute();
+        $normalizedRoute = $normalizer->normalize($route, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["sightInRoutes", "tour"]]);;
 
 
-        return new JsonResponse($normalizedRoutes);
+        return new JsonResponse($normalizedRoute);
     }
 }

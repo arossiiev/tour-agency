@@ -13,6 +13,6 @@ get_tour:
   methods: GET
 
 get_routes:
-  path: /tours/{tour_id}/routes
-  controller: App\Controller\RouteController::getRoutes
+  path: /tours/{tour_id}/route
+  controller: App\Controller\RouteController::getRoute
   methods: GET

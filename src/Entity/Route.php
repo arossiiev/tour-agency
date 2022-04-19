@@ -29,26 +29,18 @@ class Route
      */
     private $start_time;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $description;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Tour::class, inversedBy="routes")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tour;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
 
     /**
      * @ORM\OneToMany(targetEntity=SightInRoute::class, mappedBy="route")
      */
     private $sightInRoutes;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Tour::class, inversedBy="route", cascade={"persist", "remove"})
+     */
+    private $tour;
+
+
 
     public function __construct()
     {
@@ -84,41 +76,7 @@ class Route
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
 
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getTour(): ?Tour
-    {
-        return $this->tour;
-    }
-
-    public function setTour(?Tour $tour): self
-    {
-        $this->tour = $tour;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, SightInRoute>
@@ -149,4 +107,18 @@ class Route
 
         return $this;
     }
+
+    public function getTour(): ?Tour
+    {
+        return $this->tour;
+    }
+
+    public function setTour(?Tour $tour): self
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+
 }
