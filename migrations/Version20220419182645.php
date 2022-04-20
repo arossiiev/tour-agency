@@ -26,8 +26,7 @@ final class Version20220419182645 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql("DELETE FROM route WHERE tour_id=1;");
-        $this->addSql("DELETE FROM route WHERE tour_id=2;");
-        $this->addSql("DELETE FROM route WHERE tour_id=3;");
+        $this->addSql("TRUNCATE route;");
+
     }
 }

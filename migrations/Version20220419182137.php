@@ -25,7 +25,7 @@ final class Version20220419182137 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE sight_in_route_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql("CREATE TABLE route (id INT NOT NULL DEFAULT nextval('route_id_seq'), tour_id INT DEFAULT NULL, duration INT NOT NULL, start_time TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))");
         $this->addSql('CREATE UNIQUE INDEX UNIQ_2C4207915ED8D43 ON route (tour_id)');
-        $this->addSql("CREATE TABLE sight (id INT NOT NULL DEFAULT nextval('sight_id_seq'), name VARCHAR(255) NOT NULL, image_url VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, longitude DOUBLE PRECISION NOT NULL, latitude DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))");
+        $this->addSql("CREATE TABLE sight (id INT NOT NULL DEFAULT nextval('sight_id_seq'), name VARCHAR(255) NOT NULL, image_url VARCHAR(255) NOT NULL, description VARCHAR(1024) NOT NULL, longitude NUMERIC(10, 8) NOT NULL, latitude NUMERIC(11, 8) NOT NULL, PRIMARY KEY(id))");
         $this->addSql("CREATE TABLE sight_in_route (id INT NOT NULL DEFAULT nextval('sight_in_route_id_seq'), route_id INT DEFAULT NULL, sight_id INT DEFAULT NULL, sight_order INT NOT NULL, PRIMARY KEY(id))");
         $this->addSql('CREATE INDEX IDX_754873E34ECB4E6 ON sight_in_route (route_id)');
         $this->addSql('CREATE INDEX IDX_754873E983D68AB ON sight_in_route (sight_id)');

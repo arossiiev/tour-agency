@@ -28,17 +28,17 @@ class Sight
     private $image_url;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=1024)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="decimal")
      */
     private $longitude;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="decimal")
      */
     private $latitude;
 
@@ -83,24 +83,24 @@ class Sight
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getLongitude(): ?string
     {
         return $this->longitude;
     }
 
-    public function setLongitude(float $longitude): self
+    public function setLongitude(string $longitude): self
     {
         $this->longitude = $longitude;
 
         return $this;
     }
 
-    public function getLatitude(): ?float
+    public function getLatitude(): ?string
     {
         return $this->latitude;
     }
 
-    public function setLatitude(float $latitude): self
+    public function setLatitude(string $latitude): self
     {
         $this->latitude = $latitude;
 

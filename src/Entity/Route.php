@@ -32,6 +32,7 @@ class Route
 
     /**
      * @ORM\OneToMany(targetEntity=SightInRoute::class, mappedBy="route")
+     * @ORM\OrderBy({"sight_order" = "ASC"})
      */
     private $sightInRoutes;
 

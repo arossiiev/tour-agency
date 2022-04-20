@@ -21,13 +21,13 @@ final class Version20220412102408 extends AbstractMigration
     {
         $this->addSql("INSERT INTO tour(name, country, city, description, image_url, price) VALUES ('Архітектура Києву' ,'Україна', 'Київ', E'Тур по найцікавішим архітектурним пам\'яткам Києва', 'http://localhost:8000/images/kiyv.jpg', 56000);");
         $this->addSql("INSERT INTO tour(name, country, city, description, image_url, price) VALUES (E'Пам\'ятки Львову', 'Україна', 'Львів','Історичний центр Львова занесено до списку Світової спадщини ЮНЕСКО. У місті розташована найбільша кількість памяток архітектури в Україні. 2009 року Львову надано звання Культурної столиці України.', 'http://localhost:8000/images/lviv.jpg', 72000);");
-        $this->addSql("INSERT INTO tour(name, country, city, description, image_url, price) VALUES ('Музеї Києву' ,'Україна', 'Київ', 'Відвідайте відомі музеї Києву', 'http://localhost:8000/images/kiyv.jpg', 66000);");
+        $this->addSql("INSERT INTO tour(name, country, city, description, image_url, price) VALUES ('Музеї Києву' ,'Україна', 'Київ', 'Відвідайте відомі музеї Києву', 'http://localhost:8000/images/museums-kiyv.jpg', 66000);");
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql("DELETE FROM tour WHERE city='Київ';");
-        $this->addSql("DELETE FROM tour WHERE city='Львів';");
+        $this->addSql("TRUNCATE tour;");
+
 
     }
 }

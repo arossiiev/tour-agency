@@ -24,10 +24,11 @@ function ToursPage(){
     return (
         <Layout>
             <div className="row row-cols-md-auto my-3">
-                {tours.map(({id, country, city, imageUrl, price})=>
+                {tours.map(({id, name, country, city, imageUrl, price})=>
                     <div className="col">
                         <TourCard
                             key={id}
+                            name={name}
                             country={country}
                             city={city}
                             image_url={imageUrl}

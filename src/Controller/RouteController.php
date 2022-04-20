@@ -21,9 +21,18 @@ class RouteController extends AbstractController
     {
 
         $route = $tourRepository->find($tour_id)->getRoute();
+        $sights = $route->getSightInRoutes();
+        $normalizedSights = [];
+        foreach ($sights as $sight) {
+            $normalizedSights[] = $normalizer->normalize($sight->getSight(), "json", [
+                AbstractNormalizer::IGNORED_ATTRIBUTES => ['__initializer__', '__cloner__', '__isInitialized__'],
+            ]);
+
+        }
+
         $normalizedRoute = $normalizer->normalize($route, "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ["sightInRoutes", "tour"]]);;
 
-
+        $normalizedRoute["sights"] = $normalizedSights;
         return new JsonResponse($normalizedRoute);
     }
 }
