@@ -3,7 +3,7 @@
 
 function Carousel({sights}){
     return (
-            <div id="carouselExampleCaptions" className="carousel slide container-sm" data-bs-ride="carousel" style={{width: "55rem", height: "30rem"}}>
+            <div id="carouselExampleCaptions" className="carousel slide container-sm d-none d-sm-flex"  data-bs-ride="carousel" style={{width: "55rem", height: "30rem"}}>
                 <div className="carousel-indicators">
                     {sights.map((sight, index)=>{
                         const cc = index === 0 ? "active": "";

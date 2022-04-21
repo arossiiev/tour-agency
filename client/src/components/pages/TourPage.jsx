@@ -22,20 +22,32 @@ function TourPage(){
     const route = useSelector(routeSelector);
 
 
-
-
     if (!tour || Object.keys(route).length === 0) {
         return <Loading/>;
 
     }
 
 
-    console.log(route);
+    const hours = route.duration / 3600;
+    const minutes = (route.duration / 60) % 60;
+
+    const start_date = new Date(route.startTime)
+
     return (
         <Layout>
-            <div className="row row-cols-md-auto justify-content-center my-3 d-none d-sm-flex">
+            <div className="row row-cols-md-auto justify-content-center my-3">
                 <div className="col">
+                    <h3 className="text-center">{tour.name}</h3>
                     <Carousel sights={route.sights}/>
+                    <div className="container my-2">
+                        <h3 className="text-center">Опис</h3>
+                        <p>{tour.description}</p>
+                        <p><span className="fw-bold">Тривалість:</span> {hours} год. {minutes} хв</p>
+                        <p><span className="fw-bold">Дата початку:</span> {start_date.toDateString()}</p>
+                        <p><span className="fw-bold">Час початку:</span> {start_date.toLocaleTimeString()}</p>
+
+                    </div>
+
                 </div>
             </div>
         </Layout>
