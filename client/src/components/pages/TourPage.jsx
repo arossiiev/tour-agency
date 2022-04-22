@@ -8,6 +8,7 @@ import Loading from "../layout/Loading";
 import Carousel from "../common/Carousel";
 import GeoMap from "../common/GeoMap";
 import {Link} from "react-router-dom";
+import RouteTimeline from "../common/RouteTimeline";
 
 
 function TourPage(){
@@ -49,9 +50,11 @@ function TourPage(){
                         <p><span className="fw-bold">Час початку:</span> {start_date.toLocaleTimeString()}</p>
 
                     </div>
+                    <h3 className="text-center">Маршрут</h3>
+                    <RouteTimeline sights={route.sights}/>
                     <GeoMap sights={route.sights}/>
                     <div className="container my-4 d-flex justify-content-between">
-                        <p><span className="fw-bold">Ціна: </span>{tour.price / 100} грн</p>
+                        <p className="fs-3 m-0"><span className="fw-bold">Ціна: </span>{tour.price / 100} грн</p>
                         <Link to={"/order"}>
                             <button type="button" className="btn btn-outline-primary ">Замовити</button>
                         </Link>
