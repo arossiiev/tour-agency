@@ -6,6 +6,8 @@ import Layout from "../layout/Layout";
 import {useParams} from "react-router";
 import Loading from "../layout/Loading";
 import Carousel from "../common/Carousel";
+import GeoMap from "../common/GeoMap";
+import {Link} from "react-router-dom";
 
 
 function TourPage(){
@@ -47,7 +49,13 @@ function TourPage(){
                         <p><span className="fw-bold">Час початку:</span> {start_date.toLocaleTimeString()}</p>
 
                     </div>
+                    <GeoMap sights={route.sights}/>
+                    <div>
+                        <Link to={"/order"}>
+                            <button type="button" className="btn btn-outline-primary">Замовити</button>
+                        </Link>
 
+                    </div>
                 </div>
             </div>
         </Layout>
