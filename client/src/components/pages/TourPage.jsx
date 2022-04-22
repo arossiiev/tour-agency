@@ -50,9 +50,10 @@ function TourPage(){
 
                     </div>
                     <GeoMap sights={route.sights}/>
-                    <div>
+                    <div className="container my-4 d-flex justify-content-between">
+                        <p><span className="fw-bold">Ціна: </span>{tour.price / 100} грн</p>
                         <Link to={"/order"}>
-                            <button type="button" className="btn btn-outline-primary">Замовити</button>
+                            <button type="button" className="btn btn-outline-primary ">Замовити</button>
                         </Link>
 
                     </div>

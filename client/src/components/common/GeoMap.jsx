@@ -1,4 +1,4 @@
-import {DirectionsRenderer, DirectionsService, GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
+import {DirectionsRenderer, DirectionsService, GoogleMap, LoadScript} from '@react-google-maps/api';
 import {useState} from "react";
 
 
@@ -11,10 +11,15 @@ function GeoMap({sights}){
         {location: {lat:parseFloat(latitude), lng: parseFloat(longitude)}, stopover: false})
     );
 
+    if(waypoints.length === 0){
+        return (<></>);
+    }
+
+    const google_api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     return (
         <div className="container">
             <LoadScript
-                googleMapsApiKey="AIzaSyDiaCezjIUPyH-ABq5kzPcZq8YBV-vJPp8"
+                googleMapsApiKey={google_api}
             >
                 <GoogleMap
                     id='direction-example'
@@ -57,15 +62,6 @@ function GeoMap({sights}){
                                 options={{directions: resp}}
                             />
                         )
-
-                    }
-                    {
-                        sights.map(({longitude, latitude})=>(
-                            <Marker
-                                icon={"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"}
-                                position={{lat: latitude, lng: longitude}}
-                            />
-                        ))
 
                     }
                 </GoogleMap>
