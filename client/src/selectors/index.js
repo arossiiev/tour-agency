@@ -12,3 +12,7 @@ export function routeSelector(state){
     return state.route;
 }
 
+export function getToasts(state)
+{
+    return state.toast;
+}

@@ -1,6 +1,6 @@
 import { all, put, call, takeEvery } from 'redux-saga/effects';
-import {fetchRoute, fetchTour, fetchTours} from "../services";
-import {GET_ROUTE, GET_TOUR, GET_TOURS, setRoute, setTour, setTours} from "../actions";
+import {createOrderService, fetchRoute, fetchTour, fetchTours} from "../services";
+import {addToast, CREATE_ORDER, GET_ROUTE, GET_TOUR, GET_TOURS, setRoute, setTour, setTours} from "../actions";
 
 
 
@@ -26,6 +26,24 @@ function* getRoute(action){
     }catch(e){}
 }
 
+function* createOrder(action){
+    try{
+        const {data} = yield call(createOrderService,
+            action.payload.first_name,
+            action.payload.second_name,
+            action.payload.phone,
+            action.payload.mail,
+            action.payload.tour_id);
+
+
+        yield put(addToast("success", "Замовлення оформлео!"));
+
+
+    }catch(e){
+        yield put(addToast("error", JSON.parse(e.request.response).message));
+    }
+}
+
 
 function* watchFetchTours(){
     yield takeEvery(GET_TOURS, getTours);
@@ -39,11 +57,19 @@ function* watchFetchRoute(){
     yield takeEvery(GET_ROUTE, getRoute);
 }
 
+
+function* watchCreateOrder(){
+    yield takeEvery(CREATE_ORDER, createOrder);
+}
+
+
+
 export default function* rootSaga()
 {
     yield all([
         watchFetchTours(),
         watchFetchTour(),
-        watchFetchRoute()
+        watchFetchRoute(),
+        watchCreateOrder()
     ])
 }

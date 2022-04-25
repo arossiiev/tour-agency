@@ -14,13 +14,13 @@ function Footer(){
                         <h5 className="text-uppercase">Links</h5>
                         <ul className="list-unstyled no-text-decoration">
                             <li>
-                                <a className="d-flex" href="https://github.com/blakfar" target="_blank"><img src={github} alt={"github"} width={32} height={32}/>
+                                <a className="d-flex" href="https://github.com/blakfar" target="_blank" rel="noreferrer"><img src={github} alt={"github"} width={32} height={32}/>
                                     <p className="text-white fs-5 my-0 mx-1 font-monospace">Github</p>
                                 </a>
 
                             </li>
                             <li>
-                                <a className="d-flex" href="https://mail.google.com/" target="_blank"><img src={gmail} alt={"mail"} width={32} height={32}/>
+                                <a className="d-flex" href="https://mail.google.com/" target="_blank" rel="noreferrer"><img src={gmail} alt={"mail"} width={32} height={32}/>
                                     <p className="text-white fs-5 my-0 mx-1 font-monospace">rossievsasa@gmail.com</p>
                                 </a>
                             </li>

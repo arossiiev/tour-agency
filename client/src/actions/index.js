@@ -4,7 +4,9 @@ export const GET_TOUR="GET_TOUR";
 export const SET_TOUR="SET_TOUR";
 export const GET_ROUTE="GET_ROUTE";
 export const SET_ROUTE="SET_ROUTE";
+export const CREATE_ORDER="CREATE_ORDER";
 
+export const ADD_TOAST="ADD_TOAST";
 
 
 export function getTours(){
@@ -63,6 +65,32 @@ export function setRoute(route){
     return{
         type: SET_ROUTE,
         payload: route
+    }
+
+}
+
+
+export function addToast(toastType, message) {
+    return {
+        type: ADD_TOAST,
+        payload: { type: toastType, message: message }
+    }
+}
+
+
+
+
+export function createOrder(first_name, second_name, phone, mail, tour_id){
+
+    return{
+        type: CREATE_ORDER,
+        payload: {
+            first_name: first_name,
+            second_name: second_name,
+            mail: mail,
+            phone: phone,
+            tour_id: tour_id
+        }
     }
 
 }

@@ -26,7 +26,7 @@ class OrderController extends AbstractController
     ): JsonResponse
     {
         try {
-            $data = $request->request->all();
+            $data = $request->toArray();
 
         } catch (JsonException $exception) {
             return new JsonResponse(
@@ -74,7 +74,7 @@ class OrderController extends AbstractController
         $entityManager->flush();
 
 
-        return new JsonResponse([['id' => $newOrder->getId()],
-            JsonResponse::HTTP_CREATED]);
+        return new JsonResponse(['id' => $newOrder->getId()],
+            JsonResponse::HTTP_CREATED);
     }
 }
