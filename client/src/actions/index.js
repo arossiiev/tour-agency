@@ -7,13 +7,14 @@ export const SET_ROUTE="SET_ROUTE";
 export const CREATE_ORDER="CREATE_ORDER";
 
 export const ADD_TOAST="ADD_TOAST";
+export const CLEAR_TOAST="CLEAR_TOAST";
 
 
-export function getTours(){
+export function getTours(search){
 
     return{
         type: GET_TOURS,
-        payload: {}
+        payload: {search: search}
     }
 
 }
@@ -77,6 +78,12 @@ export function addToast(toastType, message) {
     }
 }
 
+export function clearToast(){
+    return {
+        type: CLEAR_TOAST,
+        payload: {}
+    }
+}
 
 
 

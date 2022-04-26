@@ -45,22 +45,22 @@ class TourRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Tour[] Returns an array of Tour objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Tour[] Returns an array of Tour objects
+     */
+    public function findByText($value)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
+
+        $qb = $this->createQueryBuilder('t');
+        return $qb->orWhere($qb->expr()->like('t.city', ':val'))
+            ->orWhere($qb->expr()->like('t.country', ':val'))
+            ->orWhere($qb->expr()->like('t.name', ":val"))
+            ->setParameter(':val', "%$value%")
             ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Tour

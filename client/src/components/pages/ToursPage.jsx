@@ -21,9 +21,18 @@ function ToursPage(){
         return (<Loading/>);
     }
 
+    const handleSearch = (search) =>{
+        if(search !== ""){
+            dispatch(getTours(search));
+        }
+        else{
+            dispatch(getTours());
+        }
+    }
+
 
     return (
-        <Layout>
+        <Layout callback={handleSearch}>
             <div className="row row-cols-md-auto my-3">
                 {tours.map(({id, name, country, city, imageUrl, price})=>
                     <Link key={id} to={`/tours/${id}`} style={{textDecoration:"none"}}>

@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {ADD_TOAST, SET_ROUTE, SET_TOUR, SET_TOURS} from "../actions";
+import {ADD_TOAST, CLEAR_TOAST, SET_ROUTE, SET_TOUR, SET_TOURS} from "../actions";
 
 
 function toursReducers(state={}, action){
@@ -43,6 +43,8 @@ function toastsReducer(state=null, action) {
     switch (action.type)  {
         case ADD_TOAST:
             return action.payload;
+        case CLEAR_TOAST:
+            return null;
 
         default:
             return state;

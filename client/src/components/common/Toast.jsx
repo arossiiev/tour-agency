@@ -3,15 +3,17 @@
 import React, {useEffect} from "react";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getToasts} from "../../selectors";
 import {useNavigate} from "react-router";
+import {clearToast} from "../../actions";
 
 
 
 
 function Toast()
 {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     let toastMessage = useSelector(getToasts);
 
@@ -22,6 +24,7 @@ function Toast()
 
             if (toastMessage.type === 'success') {
                 toast.success(toastMessage.message, {onClose: ()=>{
+                        dispatch(clearToast());
                         navigate("/");
                     }})
             }

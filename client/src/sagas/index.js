@@ -6,7 +6,7 @@ import {addToast, CREATE_ORDER, GET_ROUTE, GET_TOUR, GET_TOURS, setRoute, setTou
 
 function* getTours(action){
     try{
-        const {data} = yield call(fetchTours);
+        const {data} = yield call(fetchTours, action.payload.search);
         yield put(setTours(data))
     }catch(e){}
 }

@@ -19,8 +19,8 @@ String.prototype.format = function ()
 
 axios.defaults.baseURL = BASE_URL
 
-export function fetchTours(){
-    return axios.get(TOURS_URL);
+export function fetchTours(search){
+    return axios.get(TOURS_URL, {params: {search: search}});
 }
 
 export function fetchTour(tour_id){
