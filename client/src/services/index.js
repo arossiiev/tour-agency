@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "http://api.jettour.live"
 const TOURS_URL = "/tours"
 const TOUR_URL = "/tours/{}"
 const ROUTE_URL = "/tours/{}/route"

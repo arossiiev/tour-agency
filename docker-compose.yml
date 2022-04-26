@@ -23,12 +23,14 @@ services:
       context: ./nginx
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./:/var/www/symfony
+      - ./nginx/client.conf:/etc/nginx/conf.d/client.conf
+      - ./:/var/www/api.jettour.live
+      - ./client/build:/var/www/jettour.live
       - ./logs/nginx/:/var/log/nginx:cached
     depends_on:
       - fpm
     ports:
-      - "8080:80"
+      - "80:80"
     links:
       - fpm
 
@@ -36,8 +38,14 @@ services:
     build:
       context: '.'
       dockerfile: 'fpm/Dockerfile'
+    depends_on:
+      - database
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
     volumes:
-      - ./:/var/www/symfony:cached
+      - ./:/var/www/api.jettour.live:cached
     ports:
       - '9002:9000'
 
