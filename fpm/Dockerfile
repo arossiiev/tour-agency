@@ -15,11 +15,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ADD composer.json composer.lock /var/www/api.jettour.live/
 
 WORKDIR /var/www/api.jettour.live/
-RUN composer install --no-scripts --no-autoloader && \
-    composer clear-cache
+CMD composer i -o ; wait-for-it db:5432 -- bin/console doctrine:migrations:migrate ;  php-fpm
 
 
-CMD wait-for-it database:5432 -- ./bin/console doctrine:migrations:migrate; php-fpm
+
+
 
 
 
