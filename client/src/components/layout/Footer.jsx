@@ -20,7 +20,7 @@ function Footer(){
 
                             </li>
                             <li>
-                                <a className="d-flex" href="https://mail.google.com/" target="_blank" rel="noreferrer"><img src={gmail} alt={"mail"} width={32} height={32}/>
+                                <a className="d-flex" href="https://mail.google.com/mail/u/0/?source=mailto&to=rossievsasa@gmail.com&fs=1&tf=cm" target="_blank" rel="noreferrer"><img src={gmail} alt={"mail"} width={32} height={32}/>
                                     <p className="text-white fs-5 my-0 mx-1 font-monospace">rossievsasa@gmail.com</p>
                                 </a>
                             </li>

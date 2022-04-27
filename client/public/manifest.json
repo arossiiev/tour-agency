@@ -1,8 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-
+  "short_name": "JetTour",
+  "name": "Tour agency JetTour",
+  "icons": [ {
+    "src": "/logo.svg",
+    "type": "image/svg",
+    "sizes": "32x32"
+  }
   ],
   "start_url": ".",
   "display": "standalone",
