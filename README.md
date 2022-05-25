@@ -9,7 +9,7 @@ This is my pet project. The goal is build tour agency web app.
 - Symfony - as a web framework :notes:;
 - PostgresSQL - as a database service :elephant:;
 - nginx - as a reverse proxy :left_right_arrow:;
-- fpm - as a FastCGI process manager;
+- fpm - as a FastCGI process manager :gear:;
 - docker - for orchestration of services above :whale2:;
 - Postman - for API testing :mag_right:;
 - Mailgun - for mailing purposes :mailbox:;
